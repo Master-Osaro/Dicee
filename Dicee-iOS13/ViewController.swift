@@ -2,8 +2,7 @@
 //  ViewController.swift
 //  Dicee-iOS13
 //
-//  Created by Angela Yu on 11/06/2019.
-//  Copyright © 2019 London App Brewery. All rights reserved.
+//  Created by Osaro Iyoha on 31/03/2020.
 //
 
 import UIKit
@@ -30,7 +29,7 @@ class ViewController: UIViewController {
 //        diceImageView2.image = #imageLiteral(resourceName: "DiceFive")
         //rightDiceNumber Condition
        
-        //leftDiceNumber Condition
+        //leftDiceNumber Condition - Want to avoid an Array out of bounds error so we make sure dice number is within the Array bound  before using, if not reset it.
         if (leftDiceNumber<=4) {
             leftDiceNumber = leftDiceNumber + 1;
         } else {
