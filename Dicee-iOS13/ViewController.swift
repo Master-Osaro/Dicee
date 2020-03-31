@@ -12,8 +12,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var diceImageView1: UIImageView!
     @IBOutlet weak var diceImageView2: UIImageView!
     
-    var leftDiceNumber = 0
-    var rightDiceNumber = 5
     //viewDidLoad() func handles what happens when the app loads up
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +27,31 @@ class ViewController: UIViewController {
 //        diceImageView2.image = #imageLiteral(resourceName: "DiceFive")
         //rightDiceNumber Condition
        
-        //leftDiceNumber Condition - Want to avoid an Array out of bounds error so we make sure dice number is within the Array bound  before using, if not reset it.
-        if (leftDiceNumber<=4) {
-            leftDiceNumber = leftDiceNumber + 1;
-        } else {
-            leftDiceNumber = 0
-        }
+        //leftDiceNumber Condition - Want to avoid an Array out of bounds error so we make sure dice number is within the Array bound during incrment before using, if not reset it.
+//        if (leftDiceNumber<=4) {
+//            leftDiceNumber = leftDiceNumber + 1;
+//        } else {
+//            leftDiceNumber = 0
+//        }
+//
+//        if (rightDiceNumber>0) {
+//            rightDiceNumber = rightDiceNumber - 1;
+//        } else {
+//            rightDiceNumber = 5
+//        }
         
-        if (rightDiceNumber>0) {
-            rightDiceNumber = rightDiceNumber - 1;
-        } else {
-            rightDiceNumber = 5
-        }
+        let diceArray =  [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")]
+        //Now using random numbers so no need for proceedural increments and checks as above
         
-        diceImageView1.image = [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")][leftDiceNumber]
-        diceImageView2.image = [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")][rightDiceNumber]
+        //var is for defining variables and let is for constants (Hehe...Sorry this aint JS ES6)
+        //There's also diceArray.randomElement() for viewing random components in an array
         
+        //Int.random(in: 0...5) - ... is called a closed range oprator, where values are inclusive of the upper bound, want upper bound exclusive? use ..<
+        let leftDiceNumber = Int.random(in: 0...5)
+        let rightDiceNumber = Int.random(in: 0...5)
         
+        diceImageView1.image = diceArray[leftDiceNumber]
+        diceImageView2.image = diceArray[rightDiceNumber]
     }
     
 }
